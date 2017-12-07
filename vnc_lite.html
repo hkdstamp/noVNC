@@ -93,6 +93,7 @@ aaaaaaaaaaaaaa
             }
         }
         function FBUComplete(rfb, fbu) {
+            clearTimeout(retryTimer);
             UIresize();
             rfb.set_onFBUComplete(function() { });
         }
@@ -117,6 +118,7 @@ aaaaaaaaaaaaaa
             document.getElementById('noVNC_status').appendChild(form);
             document.getElementById('noVNC_status').querySelector('label').textContent = msg;
             isConnected = true;
+            clearTimeout(retryTimer);
 
         }
         function setPassword() {
@@ -165,6 +167,8 @@ aaaaaaaaaaaaaa
                         status("Connected (unencrypted) to " +
                                desktopName, "normal");
                     }
+                    
+                    clearTimeout(retryTimer);
                     isConnected = true;
                     break;
                 case 'disconnecting':
@@ -279,12 +283,13 @@ aaaaaaaaaaaaaa
             }
             retryCount++;
             rfb.connect(host, port, password, path);
-            //if (retryCount > 100) return;
-            //setTimeout(()=>{loadconnect()},2000);
+            if (retryCount > 100) return;
+            retryTimer = setTimeout(()=>{loadconnect()},5000);
 
         }
         var isConnected = false;
         var retryCount = 0;
+        var retryTimer;
 
         loadconnect();
 
