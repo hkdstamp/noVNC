@@ -167,7 +167,7 @@ aaaaaaaaaaaaaa
                         status("Connected (unencrypted) to " +
                                desktopName, "normal");
                     }
-                    
+
                     clearTimeout(retryTimer);
                     isConnected = true;
                     break;
@@ -284,6 +284,7 @@ aaaaaaaaaaaaaa
             retryCount++;
             rfb.connect(host, port, password, path);
             if (retryCount > 100) return;
+            clearTimeout(retryTimer);
             retryTimer = setTimeout(()=>{loadconnect()},5000);
 
         }
