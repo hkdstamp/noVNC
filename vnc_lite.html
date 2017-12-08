@@ -151,6 +151,8 @@
             } else {
                 status("Connected (unencrypted) to " + desktopName, "normal");
             }
+            clearTimeout(retryTimer);
+            isConnected = true;
         }
         function disconnected(e) {
             document.getElementById('sendCtrlAltDelButton').disabled = true;
