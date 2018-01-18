@@ -1107,6 +1107,8 @@ RFB.prototype = {
             Log.Warn("Intel AMT KVM only supports 8/16 bit depths. Using low color mode.");
             this._fb_depth = 8;
         }
+        //change force
+        this._fb_depth = 8;
 
         RFB.messages.pixelFormat(this._sock, this._fb_depth, true);
         this._sendEncodings();
