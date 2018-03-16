@@ -1108,7 +1108,7 @@ RFB.prototype = {
             this._fb_depth = 8;
         }
         //change force
-        this._fb_depth = 16;
+        this._fb_depth = 24;
 
         RFB.messages.pixelFormat(this._sock, this._fb_depth, true);
         this._sendEncodings();
